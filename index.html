@@ -106,65 +106,25 @@
 
     <!-- Lógica del Juego en JavaScript -->
     <script>
-        // Tu base de datos de preguntas integrada directamente
-        const questions = [
-            {
-                "id": 1,
-                "pregunta": "¿Cuál es la velocidad máxima permitida para un turismo en una autopista dentro de poblado?",
-                "opciones": ["A) 120 km/h", "B) 80 km/h", "C) 100 km/h"],
-                "respuesta_correcta": "B) 80 km/h",
-                "explicacion": "En las autopistas y autovías dentro de poblado, la velocidad máxima para turismos y motocicletas es de 80 km/h, salvo que la señalización marque un límite diferente."
-            },
-            {
-                "id": 2,
-                "pregunta": "¿Qué indica una línea continua de color amarillo en el bordillo o junto al borde de la calzada?",
-                "opciones": ["A) Prohíbe parar y estacionar.", "B) Prohíbe el estacionamiento, pero permite la parada.", "C) Marca una zona reservada para carga y descarga."],
-                "respuesta_correcta": "A) Prohíbe parar y estacionar.",
-                "explicacion": "Una línea continua amarilla en el bordillo prohíbe o limita tanto la parada como el estacionamiento en toda la longitud de la línea."
-            },
-            {
-                "id": 3,
-                "pregunta": "¿Cuál es la tasa máxima de alcohol en aire espirado permitida para un conductor novato?",
-                "opciones": ["A) 0,25 mg/l", "B) 0,15 mg/l", "C) 0,30 mg/l"],
-                "respuesta_correcta": "B) 0,15 mg/l",
-                "explicacion": "Para conductores novatos (durante los dos primeros años tras obtener el permiso) y profesionales, la tasa máxima permitida es de 0,15 mg/l en aire espirado (0,30 g/l en sangre)."
-            },
-            {
-                "id": 4,
-                "pregunta": "¿Está permitido utilizar el teléfono móvil sujetándolo con la mano mientras se conduce si el vehículo está detenido en un semáforo en rojo?",
-                "opciones": ["A) Sí, siempre que el vehículo no esté en movimiento.", "B) No, ya que detenerse temporalmente en un semáforo sigue formándose parte de la conducción.", "C) Sí, pero únicamente para responder llamadas cortas."],
-                "respuesta_correcta": "B) No, ya que detenerse temporalmente en un semáforo sigue formándose parte de la conducción.",
-                "explicacion": "Sujetar el teléfono con la mano mientras se conduce está prohibido, e incluye las detenciones temporales por tráfico o semáforos."
-            },
-            {
-                "id": 5,
-                "pregunta": "En una intersección sin señalizar, ¿quién tiene preferencia de paso?",
-                "opciones": ["A) El vehículo que circula por la vía más ancha.", "B) El vehículo que se aproxime por la derecha.", "C) El vehículo que va a mayor velocidad."],
-                "respuesta_correcta": "B) El vehículo que se aproxime por la derecha.",
-                "explicacion": "Como norma general en intersecciones donde no exista señalización de preferencia, se debe ceder el paso a los vehículos que se aproximen por la derecha."
-            },
-            {
-                "id": 6,
-                "pregunta": "¿Qué distancia de seguridad lateral debe dejar un turismo al adelantar a un ciclista en una carretera convencional?",
-                "opciones": ["A) Mínimo 1 metro.", "B) Como mínimo 1,5 metros, pudiendo ocupar parte o la totalidad del carril contiguo.", "C) Un espacio proporcional a la velocidad sin salirse del carril."],
-                "respuesta_correcta": "B) Como mínimo 1,5 metros, pudiendo ocupar parte o la totalidad del carril contiguo.",
-                "explicacion": "Al adelantar a peatones, animales o vehículos de dos ruedas fuera de poblado, se debe guardar una separación lateral mínima de 1,5 metros."
-            },
-            {
-                "id": 7,
-                "pregunta": "¿Qué alumbrado debe llevar encendido un turismo al circular por un túnel suficientemente iluminado?",
-                "opciones": ["A) Exclusivamente las luces de posición.", "B) Las luces de posición y las de corto alcance (cruce).", "C) Las luces de largo alcance (carretera)."],
-                "respuesta_correcta": "B) Las luces de posición y las de corto alcance (cruce).",
-                "explicacion": "En todos los túneles y pasos inferiores, independientemente del nivel de iluminación, es obligatorio encender la luz de posición y la de corto alcance."
-            },
-            {
-                "id": 8,
-                "pregunta": "¿Es obligatorio llevar el cinturón de seguridad abrochado durante la maniobra de marcha atrás o al estacionar?",
-                "opciones": ["A) Sí, es obligatorio en todas las circunstancias.", "B) No, los conductores están exentos de usarlo al efectuar la maniobra de marcha atrás o de estacionamiento.", "C) Solo dentro de poblado, fuera de poblado siempre es obligatorio."],
-                "respuesta_correcta": "B) No, los conductores están exentos de usarlo al efectuar la maniobra de marcha atrás o de estacionamiento.",
-                "explicacion": "El Reglamento General de Circulación exime del uso del cinturón a los conductores al dar marcha atrás o al realizar maniobras de estacionamiento."
-            }
-        ];
+       let questions = [];
+
+           // Función para cargar las preguntas desde un servidor o GitHub en tiempo real
+         async function cargarPreguntasDesdeInternet() {
+          try {
+         // Aquí apuntarías a la URL de tu archivo JSON en la nube
+         const respuesta = await fetch('https://tu-servidor.com/api/preguntas-dgt.json');
+         questions = await respuesta.json();
+        
+         // Mezclar las preguntas aleatoriamente para que cada examen sea único
+         questions.sort(() => Math.random() - 0.5);
+        
+         document.getElementById('total-q').textContent = questions.length;
+         console.log("¡Preguntas cargadas con éxito desde la red!");
+         } catch (error) {
+         console.error("Error al cargar las preguntas:", error);
+          alert("No se pudieron cargar las preguntas del servidor.");
+         }
+        }
 
         let currentIdx = 0;
         let score = 0;

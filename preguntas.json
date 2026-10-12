@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "tema": "Velocidad",
+    "pregunta": "¿Cuál es la velocidad máxima permitida para un turismo en una autopista dentro de poblado?",
+    "opciones": ["A) 120 km/h", "B) 80 km/h", "C) 100 km/h"],
+    "respuesta_correcta": "B) 80 km/h",
+    "explicacion": "En autopistas urbanas el límite genérico para turismos es de 80 km/h."
+  },
+  {
+    "id": 2,
+    "tema": "Señalización",
+    "pregunta": "¿Qué indica una línea continua amarilla en el bordillo?",
+    "opciones": ["A) Prohíbe parar y estacionar.", "B) Solo prohíbe estacionar.", "C) Zona de carga y descarga."],
+    "respuesta_correcta": "A) Prohíbe parar y estacionar.",
+    "explicacion": "La línea amarilla continua delimita la prohibición de parada y estacionamiento."
+  }
+
+]
